@@ -4,17 +4,17 @@
 
 ## Table of Contents
 - [Repo 2 File](#repo-2-file)
-  * [Table of Contents](#table-of-contents)
-  * [Features](#features)
-  * [Requirements](#requirements)
-  * [Installation](#installation)
-    + [Using Poetry (Recommended)](#using--poetry--https---python-poetryorg----recommended-)
-    + [Using pip install](#using-pip-install)
-  * [Usage](#usage)
-  * [Example Commands](#example-commands)
-  * [Package Structure for Module Execution](#package-structure-for-module-execution)
-  * [License](#license)
-  * [Contributing](#contributing)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [Using Poetry (Recommended)](#using-poetry-recommended)
+    - [Using pip install](#using-pip-install)
+  - [Usage](#usage)
+  - [Example Commands](#example-commands)
+  - [Package Structure for Module Execution](#package-structure-for-module-execution)
+  - [License](#license)
+  - [Contributing](#contributing)
 
 
 
