@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "repo2file"
+version = "0.1.0"
+description = "A script to collect and combine source code files from a directory, with progress tracking and virtual environment filtering."
+authors = ["Johannes Wenninger <johannes.wenninger@lcm.at>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+tqdm = "^4.64.1"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
+pytest-cov = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+# Additional options passed to pytest
+addopts = "--cov=repo2file --cov-report=term-missing --cov-report=html"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["repo2file"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
