@@ -10,6 +10,9 @@ on:
       - main
       - master
 
+permissions:
+  contents: write  # Grants permission to read and write repository contents
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # Default is true; ensures GITHUB_TOKEN is retained for subsequent git commands
 
       - name: Set up Python
         uses: actions/setup-python@v4
