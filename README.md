@@ -51,15 +51,9 @@ If you are using [Poetry](https://python-poetry.org/) to manage your project, th
     ```
 ### Using pip install
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/johannesWen/repo2file.git
-   cd repo2file
-   ```
-
 1. Install the package using pip:
     ```bash
-    pip install .
+    pip install git+https://github.com/johannesWen/repo2file.git
     ```
 
 ## Usage
