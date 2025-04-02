@@ -73,7 +73,7 @@ The script accepts the following command-line arguments:
 
 * Collect Python and toml files from a specific directory and output to a custom file:
 ```bash
-python ./repo2file/__main__.py -d /path/to/project -e .py .toml -o combined_sources.txt
+python -m repo2file -d /path/to/project -e .py .toml -o combined_sources.txt
 ```
 
 ## Package Structure for Module Execution
