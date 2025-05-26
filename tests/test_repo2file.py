@@ -100,6 +100,22 @@ def test_deterministic_ordering(tmp_path):
     # Ensure the header for 'a.py' appears before the header for 'b.py'.
     assert result.index(header_a) < result.index(header_b)
 
+    
+def test_ignore_pycache(tmp_path):
+    """Files inside __pycache__ directories should be ignored."""
+    pycache_dir = tmp_path / "__pycache__"
+    pycache_dir.mkdir()
+    cached_file = pycache_dir / "ignored.py"
+    cached_file.write_text("print('cached')", encoding="utf-8")
+
+    include_file = tmp_path / "normal.py"
+    include_file.write_text("print('normal')", encoding="utf-8")
+
+    result = collect_source_files(str(tmp_path), [".py"])
+
+    assert "print('normal')" in result
+    assert "print('cached')" not in result
+
 
 def test_no_matching_files(tmp_path):
     """
