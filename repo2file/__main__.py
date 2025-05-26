@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 import os
 import argparse
-from tqdm import tqdm
+try:
+    from tqdm import tqdm
+except Exception:  # pragma: no cover - fallback when tqdm is missing
+    def tqdm(iterable, **_):
+        """Fallback tqdm that simply returns the iterable."""
+        return iterable
 
 def collect_source_files(directory, extensions):
     """
@@ -17,6 +22,8 @@ def collect_source_files(directory, extensions):
         for file in files:
             if any(file.endswith(ext) for ext in extensions):
                 matching_files.append(os.path.join(root, file))
+
+    matching_files.sort()
                 
     collected_code = ""
     # Process each file with a progress bar

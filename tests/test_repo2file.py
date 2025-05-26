@@ -207,3 +207,22 @@ def test_main_exception_write(monkeypatch, tmp_path, capsys):
     
     captured = capsys.readouterr().out
     assert "Error writing to output file" in captured
+
+
+def test_collect_source_files_stable_order(tmp_path):
+    """Repeated calls should yield the same file ordering."""
+    # Create multiple files in arbitrary order
+    files = [
+        tmp_path / "b.py",
+        tmp_path / "a.py",
+    ]
+    sub = tmp_path / "sub"
+    sub.mkdir()
+    files.append(sub / "c.py")
+    for idx, f in enumerate(files):
+        f.write_text(f"file {idx}", encoding="utf-8")
+
+    first = collect_source_files(str(tmp_path), [".py"])
+    second = collect_source_files(str(tmp_path), [".py"])
+    assert first == second
+
