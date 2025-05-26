@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 import os
 import argparse
-from tqdm import tqdm
+
+try:
+    from tqdm import tqdm
+except ModuleNotFoundError:  # pragma: no cover - fallback for environments without tqdm
+    def tqdm(iterable, **_):
+        """Fallback tqdm that just returns the iterable."""
+        return iterable
 
 def collect_source_files(directory, extensions):
     """
