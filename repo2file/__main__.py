@@ -14,7 +14,7 @@ def collect_source_files(directory, extensions):
     Walk through the directory, collect all files matching the given extensions,
     and return their concatenated contents. Ignores common virtual environment folders.
     """
-    ignore_dirs = {"venv", ".venv", "env", ".env"}
+    ignore_dirs = {"venv", ".venv", "env", ".env", "__pycache__"}
     matching_files = []
     # Walk through the directory
     for root, dirs, files in os.walk(directory):

@@ -79,6 +79,22 @@ def test_ignore_virtualenv(tmp_path):
     assert "print('Should be ignored')" not in result
 
 
+def test_ignore_pycache(tmp_path):
+    """Files inside __pycache__ directories should be ignored."""
+    pycache_dir = tmp_path / "__pycache__"
+    pycache_dir.mkdir()
+    cached_file = pycache_dir / "ignored.py"
+    cached_file.write_text("print('cached')", encoding="utf-8")
+
+    include_file = tmp_path / "normal.py"
+    include_file.write_text("print('normal')", encoding="utf-8")
+
+    result = collect_source_files(str(tmp_path), [".py"])
+
+    assert "print('normal')" in result
+    assert "print('cached')" not in result
+
+
 def test_no_matching_files(tmp_path):
     """
     Test that if there are no files matching the extensions, an empty string is returned.
