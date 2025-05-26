@@ -79,6 +79,28 @@ def test_ignore_virtualenv(tmp_path):
     assert "print('Should be ignored')" not in result
 
 
+def test_deterministic_ordering(tmp_path):
+    """
+    Verify that files are processed in a deterministic, sorted order.
+    """
+    # Create files in an unsorted order.
+    file_b = tmp_path / "b.py"
+    file_b.write_text("print('B')", encoding="utf-8")
+
+    file_a = tmp_path / "a.py"
+    file_a.write_text("print('A')", encoding="utf-8")
+
+    result = collect_source_files(str(tmp_path), [".py"])
+
+    header_a = f"# --- {file_a} ---"
+    header_b = f"# --- {file_b} ---"
+
+    assert header_a in result
+    assert header_b in result
+    # Ensure the header for 'a.py' appears before the header for 'b.py'.
+    assert result.index(header_a) < result.index(header_b)
+
+
 def test_no_matching_files(tmp_path):
     """
     Test that if there are no files matching the extensions, an empty string is returned.

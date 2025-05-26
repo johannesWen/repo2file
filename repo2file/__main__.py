@@ -23,7 +23,10 @@ def collect_source_files(directory, extensions):
         for file in files:
             if any(file.endswith(ext) for ext in extensions):
                 matching_files.append(os.path.join(root, file))
-                
+
+    # Sort to guarantee deterministic ordering of files across runs
+    matching_files.sort()
+
     collected_code = ""
     # Process each file with a progress bar
     for file_path in tqdm(matching_files, desc="Collecting files", unit="file"):
